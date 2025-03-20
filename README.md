@@ -52,9 +52,11 @@ npm start
 
 ```
 laundredu-mobile/
-├── app/                    # 앱 메인 코드
-│   └── (tabs)/            # 탭 네비게이션
-│       └── mypage/        # 마이 페이지
+├app/
+├── _layout.tsx
+├── index.tsx
+├── mypage.tsx
+├── edit-profile.tsx
 ├── assets/                # 이미지, 폰트 등 리소스
 │   ├── images/           # 앱에서 사용되는 이미지
 │   └── fonts/            # 폰트 파일
