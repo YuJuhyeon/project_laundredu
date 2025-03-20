@@ -1,50 +1,76 @@
-# Welcome to your Expo app 👋
+# Laundredu Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+세탁 서비스를 위한 모바일 애플리케이션입니다.
 
-## Get started
+## 기술 스택
 
-1. Install dependencies
+- React Native
+- Expo
+- TypeScript
+- React Navigation
+- Expo Router
 
-   ```bash
-   npm install
-   ```
+## 기능
 
-2. Start the app
+- **마이 페이지**
+  - 사용자 정보 표시
+  - 회원 상태 관리
+  - 결제 내역 확인
+  - 카드 관리
+  - 리뷰 관리
+  - 고객 서비스
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 시작하기
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### 필수 조건
 
-## Get a fresh project
+- Node.js (v14 이상)
+- npm 또는 yarn
+- Expo CLI
 
-When you're ready, run:
+### 설치
 
+1. 저장소 클론
 ```bash
-npm run reset-project
+git clone https://github.com/joyzh1029/laundredu-mobile.git
+cd laundredu-mobile
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. 의존성 설치
+```bash
+npm install
+```
 
-## Learn more
+3. 개발 서버 실행
+```bash
+npm start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 프로젝트 구조
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```
+laundredu-mobile/
+├── app/                    # 앱 메인 코드
+│   └── (tabs)/            # 탭 네비게이션
+│       └── mypage/        # 마이 페이지
+├── assets/                # 이미지, 폰트 등 리소스
+│   ├── images/           # 앱에서 사용되는 이미지
+│   └── fonts/            # 폰트 파일
+└── components/           # 재사용 가능한 컴포넌트
+    └── layout/          # 레이아웃 관련 컴포넌트
+```
 
-## Join the community
+## 주요 기능
 
-Join our community of developers creating universal apps.
+### 마이 페이지
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- 사용자 프로필 정보 표시
+- 회원 등급 표시 (일반회원 등)
+- 결제 내역 및 카드 관리
+- 리뷰 관리
+- 친구 초대 프로그램
+- 혜택 및 쿠폰 관리
+- 고객 서비스 접근 (1:1문의, 전화문의)
+
