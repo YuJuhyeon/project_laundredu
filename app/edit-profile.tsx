@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { useFonts } from 'expo-font';
@@ -75,7 +75,7 @@ export default function EditProfile() {
             </View>
 
             {/* Address */}
-            <View style={styles.inputGroup}>
+            <View style={[styles.inputGroup, styles.lastInputGroup]}>
               <Text style={styles.label}>주소</Text>
               <View style={styles.valueRow}>
                 <Text style={styles.value}>서울시 강서구 화곡역</Text>
@@ -83,6 +83,62 @@ export default function EditProfile() {
                   <Text style={styles.changeButtonText}>변경</Text>
                 </TouchableOpacity>
               </View>
+            </View>
+
+            {/* Add extra space at the bottom of the white card */}
+            <View style={styles.cardBottomSpace} />
+          </View>
+          
+          {/* Add extra space between card and bottom links */}
+          <View style={styles.extraSpace} />
+          
+          {/* Bottom Links */}
+          <View style={styles.bottomLinks}>
+            <View style={styles.linkRow}>
+              <TouchableOpacity 
+                style={styles.linkButton}
+                onPress={() => {
+                  Alert.alert(
+                    '로그아웃',
+                    '로그아웃 하시겠습니까?',
+                    [
+                      { text: '취소', style: 'cancel' },
+                      { 
+                        text: '로그아웃', 
+                        onPress: () => {
+                          // Add logout logic here
+                          router.replace('/');
+                        },
+                        style: 'destructive'
+                      },
+                    ]
+                  );
+                }}
+              >
+                <Text style={styles.linkText}>로그아웃</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.linkButton}
+                onPress={() => {
+                  Alert.alert(
+                    '회원탈퇴',
+                    '정말 탈퇴하시겠습니까?\n탈퇴 후에는 복구가 불가능합니다.',
+                    [
+                      { text: '취소', style: 'cancel' },
+                      { 
+                        text: '탈퇴하기', 
+                        onPress: () => {
+                          // Add account deletion logic here
+                          router.replace('/');
+                        },
+                        style: 'destructive'
+                      },
+                    ]
+                  );
+                }}
+              >
+                <Text style={styles.linkText}>회원탈퇴</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </ScrollView>
@@ -137,10 +193,18 @@ const styles = StyleSheet.create({
     marginTop: 12,
     paddingHorizontal: 20,
     paddingTop: 16,
-    paddingBottom: 24,
   },
   inputGroup: {
     marginBottom: 32,
+  },
+  lastInputGroup: {
+    marginBottom: 0,
+  },
+  cardBottomSpace: {
+    height: 100,
+  },
+  extraSpace: {
+    height: 5,
   },
   rowContainer: {
     flexDirection: 'row',
@@ -189,5 +253,25 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     lineHeight: 13,
     paddingTop: 6,
+  },
+  bottomLinks: {
+    marginTop: 0,
+    marginBottom: 20,
+    paddingHorizontal: 20,
+  },
+  linkRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  linkButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+  },
+  linkText: {
+    fontSize: 14,
+    fontFamily: 'NotoSansKR-Regular',
+    color: '#666666',
+    textDecorationLine: 'underline',
   },
 });
