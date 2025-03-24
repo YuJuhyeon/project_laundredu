@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 
@@ -44,7 +44,13 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
 
       {/* Bottom Navigation */}
       <SafeAreaView edges={['bottom']} style={styles.bottomNav}>
-        <Link href="/" style={styles.navItem} asChild>
+        <TouchableOpacity 
+          style={styles.navItem}
+          onPress={() => {
+            const { router } = require('expo-router');
+            router.push('/');
+          }}
+        >
           <View>
             <Image 
               source={require('../../assets/images/home.png')}
@@ -53,8 +59,14 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
             />
             <Text style={[styles.navText, currentTab === 'home' && styles.navTextActive]}>홈</Text>
           </View>
-        </Link>
-        <Link href="/search" style={styles.navItem} asChild>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.navItem}
+          onPress={() => {
+            const { router } = require('expo-router');
+            router.push('/search');
+          }}
+        >
           <View>
             <Image 
               source={require('../../assets/images/search.png')}
@@ -63,8 +75,14 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
             />
             <Text style={[styles.navText, currentTab === 'search' && styles.navTextActive]}>지점 찾기</Text>
           </View>
-        </Link>
-        <Link href="/star" style={styles.navItem} asChild>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.navItem}
+          onPress={() => {
+            const { router } = require('expo-router');
+            router.push('/star');
+          }}
+        >
           <View>
             <Image 
               source={require('../../assets/images/star.png')}
@@ -73,8 +91,14 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
             />
             <Text style={[styles.navText, currentTab === 'star' && styles.navTextActive]}>내 지점 관리</Text>
           </View>
-        </Link>
-        <Link href="/mypage" style={styles.navItem} asChild>
+        </TouchableOpacity>
+        <TouchableOpacity 
+          style={styles.navItem}
+          onPress={() => {
+            const { router } = require('expo-router');
+            router.push('/mypage');
+          }}
+        >
           <View>
             <Image 
               source={require('../../assets/images/user.png')}
@@ -83,7 +107,7 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
             />
             <Text style={[styles.navText, currentTab === 'mypage' && styles.navTextActive]}>마이 페이지</Text>
           </View>
-        </Link>
+        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );
