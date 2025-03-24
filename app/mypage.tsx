@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useFonts } from 'expo-font';
 import { MainLayout } from '@/components/layout/MainLayout';
+import { Link } from 'expo-router';
 
 interface MenuItemProps {
   title: string;
@@ -21,7 +21,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, rightText, onPress }) => (
     <Text style={styles.menuText}>{title}</Text>
     <View style={styles.menuRight}>
       {rightText && <Text style={styles.menuRightText}>{rightText}</Text>}
-      <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
+      <IconSymbol size={18} name="chevron.right" color="#CCCCCC" />
     </View>
   </TouchableOpacity>
 );
@@ -34,8 +34,8 @@ const UserStatusBadge: React.FC<UserStatusBadgeProps> = ({ text, isActive }) => 
 
 export default function MyPage() {
   const [fontsLoaded] = useFonts({
-    'NotoSansKR-Regular': require('@/assets/fonts/Noto_Sans_KR/static/NotoSansKR-Regular.ttf'),
-    'NotoSansKR-Medium': require('@/assets/fonts/Noto_Sans_KR/static/NotoSansKR-Medium.ttf'),
+    'NotoSansKR-Regular': require('../assets/fonts/Noto_Sans_KR/static/NotoSansKR-Regular.ttf'),
+    'NotoSansKR-Medium': require('../assets/fonts/Noto_Sans_KR/static/NotoSansKR-Medium.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -53,9 +53,11 @@ export default function MyPage() {
                 <Text style={styles.userName}>홍길동 님</Text>
                 <UserStatusBadge text="일반회원" isActive={true} />
               </View>
-              <TouchableOpacity style={styles.editButton}>
-                <Text style={styles.editButtonText}>개인정보 수정</Text>
-              </TouchableOpacity>
+              <Link href="/edit-profile" asChild>
+                <TouchableOpacity style={styles.editButton}>
+                  <Text style={styles.editButtonText}>개인정보 수정</Text>
+                </TouchableOpacity>
+              </Link>
             </View>
             <View style={styles.paymentRow}>
               <TouchableOpacity style={styles.paymentButton}>
@@ -72,6 +74,7 @@ export default function MyPage() {
 
         {/* Menu Items */}
         <View style={styles.menuSection}>
+          <View style={styles.topBorder} />
           <MenuItem title="리뷰 관리" />
           <MenuItem title="친구 초대" rightText="5000P 받기" />
           <MenuItem title="혜택 및 쿠폰" />
@@ -193,23 +196,26 @@ const styles = StyleSheet.create({
     fontFamily: 'NotoSansKR-Regular',
   },
   menuSection: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
+    marginTop: 1,
+  },
+  topBorder: {
+    height: 1,
+    backgroundColor: '#EEEEEE',
+    marginBottom: -1,
   },
   menuItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 14,
-    backgroundColor: '#fff',
+    paddingVertical: 9,
     borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    borderBottomColor: '#EEEEEE',
   },
   menuText: {
-    fontSize: 14,
-    color: '#000',
-    height: 18,
-    lineHeight: 18,
+    fontSize: 15,
+    color: '#1A1A1A',
     fontFamily: 'NotoSansKR-Regular',
   },
   menuRight: {
@@ -217,11 +223,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menuRightText: {
-    fontSize: 13,
+    fontSize: 15,
     color: '#007AFF',
-    marginRight: 4,
-    height: 18,
-    lineHeight: 18,
+    marginRight: 3,
     fontFamily: 'NotoSansKR-Regular',
   },
   customerServiceSection: {
