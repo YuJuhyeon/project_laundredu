@@ -57,7 +57,7 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
               style={[styles.navIcon, currentTab === 'home' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navText, currentTab === 'home' && styles.navTextActive]}>홈</Text>
+            <Text style={[styles.navHomeText, currentTab === 'home' && styles.navTextActive]}>홈</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
@@ -89,7 +89,7 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
               style={[styles.navIcon, currentTab === 'star' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navText, currentTab === 'star' && styles.navTextActive]}>내 지점 관리</Text>
+            <Text style={[styles.navStarText, currentTab === 'star' && styles.navTextActive]}>내 지점 관리</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity 
@@ -105,7 +105,7 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
               style={[styles.navIcon, currentTab === 'mypage' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navText, currentTab === 'mypage' && styles.navTextActive]}>마이 페이지</Text>
+            <Text style={[styles.navMypageText, currentTab === 'mypage' && styles.navTextActive]}>마이 페이지</Text>
           </View>
         </TouchableOpacity>
       </SafeAreaView>
@@ -175,6 +175,33 @@ const styles = StyleSheet.create({
   },
   navIconActive: {
     tintColor: '#007AFF',
+  },
+  navHomeText: {
+    fontSize: 10,
+    color: '#999999',
+    marginTop: 2,
+    fontFamily: 'NotoSansKR-Regular',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+    marginLeft: 13,
+  },
+  navStarText: {
+    fontSize: 10,
+    color: '#999999',
+    marginTop: 2,
+    fontFamily: 'NotoSansKR-Regular',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+    marginLeft: -8,
+  },
+  navMypageText: {
+    fontSize: 10,
+    color: '#999999',
+    marginTop: 2,
+    fontFamily: 'NotoSansKR-Regular',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+    marginLeft: -6,
   },
   navText: {
     fontSize: 10,
