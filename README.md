@@ -7,27 +7,12 @@
 - React Native
 - Expo
 - TypeScript
-- React Navigation
 - Expo Router
-
-## 기능
-
-- **마이 페이지**
-  - 사용자 정보 표시
-  - 회원 상태 관리
-  - 결제 내역 확인
-  - 카드 관리
-  - 리뷰 관리
-  - 고객 서비스
-
-
-
-## 시작하기
 
 ### 필수 조건
 
 - Node.js (v14 이상)
-- npm 또는 yarn
+- npm
 - Expo CLI
 
 ### 설치
