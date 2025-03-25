@@ -60,10 +60,12 @@ export default function MyPage() {
               </Link>
             </View>
             <View style={styles.paymentRow}>
-              <TouchableOpacity style={styles.paymentButton}>
-                <Text style={styles.paymentTitle}>전체 결제 내역</Text>
-                <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
-              </TouchableOpacity>
+              <Link href="/payment-history" asChild>
+                <TouchableOpacity style={styles.paymentButton}>
+                  <Text style={styles.paymentTitle}>전체 결제 내역</Text>
+                  <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
+                </TouchableOpacity>
+              </Link>
               <TouchableOpacity style={styles.paymentButton}>
                 <Text style={styles.paymentTitle}>전체 카드 관리</Text>
                 <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
