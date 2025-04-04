@@ -98,6 +98,7 @@ export default function PaymentHistory() {
               </View>
               
               <View style={styles.modalBody}>
+                <View style={styles.separator} />
                 <Text style={styles.filterLabel}>기간 선택</Text>
                 <View style={styles.periodButtons}>
                   <TouchableOpacity 
@@ -314,7 +315,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    marginBottom: 20,
+    paddingTop: 20,
+    paddingBottom: 12,
   },
   modalTitle: {
     fontSize: 18,
@@ -327,8 +329,13 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   modalBody: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    padding: 20,
+    paddingTop: 0,
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#EEEEEE',
+    marginBottom: 20,
   },
   filterLabel: {
     fontSize: 15,

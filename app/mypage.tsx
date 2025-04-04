@@ -66,10 +66,12 @@ export default function MyPage() {
                   <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
                 </TouchableOpacity>
               </Link>
-              <TouchableOpacity style={styles.paymentButton}>
-                <Text style={styles.paymentTitle}>전체 카드 관리</Text>
-                <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
-              </TouchableOpacity>
+              <Link href="/card-management" asChild>
+                <TouchableOpacity style={styles.paymentButton}>
+                  <Text style={styles.paymentTitle}>전체 카드 관리</Text>
+                  <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
+                </TouchableOpacity>
+              </Link>
             </View>
           </View>
         </View>
@@ -79,18 +81,26 @@ export default function MyPage() {
           <View style={styles.topBorder} />
           <MenuItem title="리뷰 관리" />
           <MenuItem title="친구 초대" rightText="5000P 받기" />
-          <MenuItem title="혜택 및 쿠폰" />
-          <MenuItem title="공지사항" />
-          <MenuItem title="자주 묻는 질문" />
+          <Link href="/benefits" asChild>
+            <MenuItem title="혜택 및 쿠폰" />
+          </Link>
+          <Link href="/notice" asChild>
+            <MenuItem title="공지사항" />
+          </Link>
+          <Link href="/faq" asChild>
+            <MenuItem title="자주 묻는 질문" />
+          </Link>
           <MenuItem title="브랜드 소개" />
         </View>
 
         {/* Customer Service Section */}
         <View style={styles.customerServiceSection}>
           <View style={styles.serviceRow}>
-            <TouchableOpacity style={styles.serviceButton}>
-              <Text style={styles.serviceTitle}>1:1문의</Text>
-            </TouchableOpacity>
+            <Link href="/inquiry" asChild>
+              <TouchableOpacity style={styles.serviceButton}>
+                <Text style={styles.serviceTitle}>1:1문의</Text>
+              </TouchableOpacity>
+            </Link>
             <TouchableOpacity style={styles.serviceButton}>
               <Text style={styles.serviceTitle}>전화문의</Text>
             </TouchableOpacity>
