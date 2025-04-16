@@ -75,17 +75,17 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
           <Text style={[styles.navText, currentTab === 'search' && styles.navTextActive]}>지점 찾기</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigateTo('star')} style={styles.navItem}>
+        <TouchableOpacity onPress={() => navigateTo('bookmark')} style={styles.navItem}>
           <View style={styles.iconContainer}>
             <Image 
               source={require('../../assets/images/star.png')}
-              style={[styles.navIcon, currentTab === 'star' && styles.navIconActive]}
+              style={[styles.navIcon, currentTab === 'bookmark' && styles.navIconActive]}
               resizeMode="contain"
             />
           </View>
-          <Text style={[styles.navText, currentTab === 'star' && styles.navTextActive]}>내 지점 관리</Text>
+          <Text style={[styles.navText, currentTab === 'bookmark' && styles.navTextActive]}>내 지점 관리</Text>
         </TouchableOpacity>
-
+        
         <TouchableOpacity onPress={() => navigateTo('mypage')} style={styles.navItem}>
           <View style={styles.iconContainer}>
             <Image 
