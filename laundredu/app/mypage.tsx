@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useFonts } from 'expo-font';
 import { MainLayout } from '@/components/layout/MainLayout';
+import { router } from 'expo-router';
 
 interface MenuItemProps {
   title: string;
@@ -53,16 +54,16 @@ export default function MyPage() {
                 <Text style={styles.userName}>홍길동 님</Text>
                 <UserStatusBadge text="일반회원" isActive={true} />
               </View>
-              <TouchableOpacity style={styles.editButton}>
+              <TouchableOpacity style={styles.editButton} onPress={() => router.push('/edit-profile')}>
                 <Text style={styles.editButtonText}>개인정보 수정</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.paymentRow}>
-              <TouchableOpacity style={styles.paymentButton}>
+              <TouchableOpacity style={styles.paymentButton} onPress={() => router.push('/payment-history')}>
                 <Text style={styles.paymentTitle}>전체 결제 내역</Text>
                 <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
               </TouchableOpacity>
-              <TouchableOpacity style={styles.paymentButton}>
+              <TouchableOpacity style={styles.paymentButton} onPress={() => router.push('/card-management')}>
                 <Text style={styles.paymentTitle}>전체 카드 관리</Text>
                 <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
               </TouchableOpacity>
@@ -74,16 +75,16 @@ export default function MyPage() {
         <View style={styles.menuSection}>
           <MenuItem title="리뷰 관리" />
           <MenuItem title="친구 초대" rightText="5000P 받기" />
-          <MenuItem title="혜택 및 쿠폰" />
-          <MenuItem title="공지사항" />
-          <MenuItem title="자주 묻는 질문" />
-          <MenuItem title="브랜드 소개" />
+          <MenuItem title="혜택 및 쿠폰" onPress={() => router.push('/benefits')} />
+          <MenuItem title="공지사항" onPress={() => router.push('/notice')} />
+          <MenuItem title="자주 묻는 질문" onPress={() => router.push('/faq')} />
+          <MenuItem title="브랜드 소개"/>
         </View>
 
         {/* Customer Service Section */}
         <View style={styles.customerServiceSection}>
           <View style={styles.serviceRow}>
-            <TouchableOpacity style={styles.serviceButton}>
+            <TouchableOpacity style={styles.serviceButton} onPress={() => router.push('/inquiry')}>
               <Text style={styles.serviceTitle}>1:1문의</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.serviceButton}>
