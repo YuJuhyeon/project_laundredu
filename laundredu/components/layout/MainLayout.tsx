@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Link } from 'expo-router';
+import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // useNavigation 훅 사용
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -9,6 +8,12 @@ interface MainLayoutProps {
 }
 
 export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
+  const navigation = useNavigation(); // useNavigation 훅을 사용하여 네비게이션 객체를 가져옵니다.
+
+  const navigateTo = (screen) => {
+    navigation.navigate(screen); // 화면 전환 함수
+  };
+
   return (
     <View style={styles.container}>
       <SafeAreaView edges={['top']} style={styles.safeArea}>
@@ -20,18 +25,22 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
           />
           <View style={styles.headerRight}>
             <View style={styles.headerIcon}>
-              <Image 
-                source={require('../../assets/images/scan.png')}
-                style={styles.scanIcon}
-                resizeMode="contain"
-              />
+              <TouchableOpacity onPress={() => navigateTo('scan')}>
+                <Image 
+                  source={require('../../assets/images/scan.png')}
+                  style={styles.scanIcon}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
             </View>
             <View style={styles.headerIcon}>
-              <Image 
-                source={require('../../assets/images/bell.png')}
-                style={styles.bellIcon}
-                resizeMode="contain"
-              />
+              <TouchableOpacity onPress={() => navigateTo('notifications')}>
+                <Image 
+                  source={require('../../assets/images/bell.png')}
+                  style={styles.bellIcon}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -44,69 +53,48 @@ export function MainLayout({ children, currentTab = 'home' }: MainLayoutProps) {
 
       {/* Bottom Navigation */}
       <SafeAreaView edges={['bottom']} style={styles.bottomNav}>
-        <TouchableOpacity 
-          style={styles.navItem}
-          onPress={() => {
-            const { router } = require('expo-router');
-            router.push('/');
-          }}
-        >
-          <View>
+        <TouchableOpacity onPress={() => navigateTo('home')} style={styles.navItem}>
+          <View style={styles.iconContainer}>
             <Image 
               source={require('../../assets/images/home.png')}
               style={[styles.navIcon, currentTab === 'home' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navHomeText, currentTab === 'home' && styles.navTextActive]}>홈</Text>
           </View>
+          <Text style={[styles.navText, currentTab === 'home' && styles.navTextActive]}>홈</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.navItem}
-          onPress={() => {
-            const { router } = require('expo-router');
-            router.push('/search');
-          }}
-        >
-          <View>
+
+        <TouchableOpacity onPress={() => navigateTo('search')} style={styles.navItem}>
+          <View style={styles.iconContainer}>
             <Image 
               source={require('../../assets/images/search.png')}
               style={[styles.navIcon, currentTab === 'search' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navText, currentTab === 'search' && styles.navTextActive]}>지점 찾기</Text>
           </View>
+          <Text style={[styles.navText, currentTab === 'search' && styles.navTextActive]}>지점 찾기</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.navItem}
-          onPress={() => {
-            const { router } = require('expo-router');
-            router.push('/star');
-          }}
-        >
-          <View>
+
+        <TouchableOpacity onPress={() => navigateTo('bookmark')} style={styles.navItem}>
+          <View style={styles.iconContainer}>
             <Image 
               source={require('../../assets/images/star.png')}
-              style={[styles.navIcon, currentTab === 'star' && styles.navIconActive]}
+              style={[styles.navIcon, currentTab === 'bookmark' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navStarText, currentTab === 'star' && styles.navTextActive]}>내 지점 관리</Text>
           </View>
+          <Text style={[styles.navText, currentTab === 'bookmark' && styles.navTextActive]}>내 지점 관리</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.navItem}
-          onPress={() => {
-            const { router } = require('expo-router');
-            router.push('/mypage');
-          }}
-        >
-          <View>
+        
+        <TouchableOpacity onPress={() => navigateTo('mypage')} style={styles.navItem}>
+          <View style={styles.iconContainer}>
             <Image 
               source={require('../../assets/images/user.png')}
               style={[styles.navIcon, currentTab === 'mypage' && styles.navIconActive]}
               resizeMode="contain"
             />
-            <Text style={[styles.navMypageText, currentTab === 'mypage' && styles.navTextActive]}>마이 페이지</Text>
           </View>
+          <Text style={[styles.navText, currentTab === 'mypage' && styles.navTextActive]}>마이 페이지</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </View>
@@ -167,49 +155,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   navItem: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  iconContainer: {
+    justifyContent: 'center',
     alignItems: 'center',
   },
   navIcon: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
   },
   navIconActive: {
     tintColor: '#007AFF',
-  },
-  navHomeText: {
-    fontSize: 10,
-    color: '#999999',
-    marginTop: 2,
-    fontFamily: 'NotoSansKR-Regular',
-    includeFontPadding: false,
-    textAlignVertical: 'center',
-    marginLeft: 13,
-  },
-  navStarText: {
-    fontSize: 10,
-    color: '#999999',
-    marginTop: 2,
-    fontFamily: 'NotoSansKR-Regular',
-    includeFontPadding: false,
-    textAlignVertical: 'center',
-    marginLeft: -8,
-  },
-  navMypageText: {
-    fontSize: 10,
-    color: '#999999',
-    marginTop: 2,
-    fontFamily: 'NotoSansKR-Regular',
-    includeFontPadding: false,
-    textAlignVertical: 'center',
-    marginLeft: -6,
   },
   navText: {
     fontSize: 10,
     color: '#999999',
     marginTop: 2,
     fontFamily: 'NotoSansKR-Regular',
-    includeFontPadding: false,
-    textAlignVertical: 'center',
+    textAlign: 'center',
   },
   navTextActive: {
     color: '#007AFF',

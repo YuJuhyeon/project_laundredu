@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import { useFonts } from 'expo-font';
 import { MainLayout } from '@/components/layout/MainLayout';
-import { Link } from 'expo-router';
 
 interface MenuItemProps {
   title: string;
@@ -21,7 +21,7 @@ const MenuItem: React.FC<MenuItemProps> = ({ title, rightText, onPress }) => (
     <Text style={styles.menuText}>{title}</Text>
     <View style={styles.menuRight}>
       {rightText && <Text style={styles.menuRightText}>{rightText}</Text>}
-      <IconSymbol size={18} name="chevron.right" color="#CCCCCC" />
+      <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
     </View>
   </TouchableOpacity>
 );
@@ -34,8 +34,8 @@ const UserStatusBadge: React.FC<UserStatusBadgeProps> = ({ text, isActive }) => 
 
 export default function MyPage() {
   const [fontsLoaded] = useFonts({
-    'NotoSansKR-Regular': require('../assets/fonts/Noto_Sans_KR/static/NotoSansKR-Regular.ttf'),
-    'NotoSansKR-Medium': require('../assets/fonts/Noto_Sans_KR/static/NotoSansKR-Medium.ttf'),
+    'NotoSansKR-Regular': require('@/assets/fonts/Noto_Sans_KR/static/NotoSansKR-Regular.ttf'),
+    'NotoSansKR-Medium': require('@/assets/fonts/Noto_Sans_KR/static/NotoSansKR-Medium.ttf'),
   });
 
   if (!fontsLoaded) {
@@ -53,54 +53,39 @@ export default function MyPage() {
                 <Text style={styles.userName}>홍길동 님</Text>
                 <UserStatusBadge text="일반회원" isActive={true} />
               </View>
-              <Link href="/edit-profile" asChild>
-                <TouchableOpacity style={styles.editButton}>
-                  <Text style={styles.editButtonText}>개인정보 수정</Text>
-                </TouchableOpacity>
-              </Link>
+              <TouchableOpacity style={styles.editButton}>
+                <Text style={styles.editButtonText}>개인정보 수정</Text>
+              </TouchableOpacity>
             </View>
             <View style={styles.paymentRow}>
-              <Link href="/payment-history" asChild>
-                <TouchableOpacity style={styles.paymentButton}>
-                  <Text style={styles.paymentTitle}>전체 결제 내역</Text>
-                  <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
-                </TouchableOpacity>
-              </Link>
-              <Link href="/card-management" asChild>
-                <TouchableOpacity style={styles.paymentButton}>
-                  <Text style={styles.paymentTitle}>전체 카드 관리</Text>
-                  <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
-                </TouchableOpacity>
-              </Link>
+              <TouchableOpacity style={styles.paymentButton}>
+                <Text style={styles.paymentTitle}>전체 결제 내역</Text>
+                <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.paymentButton}>
+                <Text style={styles.paymentTitle}>전체 카드 관리</Text>
+                <IconSymbol size={16} name="chevron.right" color="#CCCCCC" />
+              </TouchableOpacity>
             </View>
           </View>
         </View>
 
         {/* Menu Items */}
         <View style={styles.menuSection}>
-          <View style={styles.topBorder} />
           <MenuItem title="리뷰 관리" />
           <MenuItem title="친구 초대" rightText="5000P 받기" />
-          <Link href="/benefits" asChild>
-            <MenuItem title="혜택 및 쿠폰" />
-          </Link>
-          <Link href="/notice" asChild>
-            <MenuItem title="공지사항" />
-          </Link>
-          <Link href="/faq" asChild>
-            <MenuItem title="자주 묻는 질문" />
-          </Link>
+          <MenuItem title="혜택 및 쿠폰" />
+          <MenuItem title="공지사항" />
+          <MenuItem title="자주 묻는 질문" />
           <MenuItem title="브랜드 소개" />
         </View>
 
         {/* Customer Service Section */}
         <View style={styles.customerServiceSection}>
           <View style={styles.serviceRow}>
-            <Link href="/inquiry" asChild>
-              <TouchableOpacity style={styles.serviceButton}>
-                <Text style={styles.serviceTitle}>1:1문의</Text>
-              </TouchableOpacity>
-            </Link>
+            <TouchableOpacity style={styles.serviceButton}>
+              <Text style={styles.serviceTitle}>1:1문의</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.serviceButton}>
               <Text style={styles.serviceTitle}>전화문의</Text>
             </TouchableOpacity>
@@ -193,13 +178,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
+    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)',
     elevation: 1,
   },
   paymentTitle: {
@@ -208,26 +187,23 @@ const styles = StyleSheet.create({
     fontFamily: 'NotoSansKR-Regular',
   },
   menuSection: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     backgroundColor: '#fff',
-    marginTop: 1,
-  },
-  topBorder: {
-    height: 1,
-    backgroundColor: '#EEEEEE',
-    marginBottom: -1,
   },
   menuItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 9,
+    paddingVertical: 14,
+    backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderBottomColor: '#EEEEEE',
+    borderBottomColor: '#F0F0F0',
   },
   menuText: {
-    fontSize: 15,
-    color: '#1A1A1A',
+    fontSize: 14,
+    color: '#000',
+    height: 18,
+    lineHeight: 18,
     fontFamily: 'NotoSansKR-Regular',
   },
   menuRight: {
@@ -235,9 +211,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   menuRightText: {
-    fontSize: 15,
+    fontSize: 13,
     color: '#007AFF',
-    marginRight: 3,
+    marginRight: 4,
+    height: 18,
+    lineHeight: 18,
     fontFamily: 'NotoSansKR-Regular',
   },
   customerServiceSection: {
